@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ParkEase - find and reserve parking spaces." />
+    <title>ParkEase | Smart parking, simply booked</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="ParkEase home"><span>P</span> ParkEase</a>
+      <nav aria-label="Main navigation">
+        <a href="#spaces">Find parking</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#list">List your space</a>
+        <a href="#dashboard" id="dashboard-link" hidden>Dashboard</a>
+      </nav>
+      <div class="account"><span id="greeting"></span><button class="login-button" type="button">Log in</button></div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">PARKING, MADE SIMPLE</p>
+          <h1>A better place to <em>park.</em></h1>
+          <p class="hero-description">Discover reliable parking near wherever life takes you. Book your spot in seconds and arrive with confidence.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div><div class="building building-one"></div><div class="building building-two"></div>
+          <div class="road"></div><div class="car"><i></i><b></b><strong></strong></div>
+          <div class="pin">P</div>
+        </div>
+      </section>
+
+      <section class="search-panel" aria-label="Find a parking space">
+        <form id="search-form">
+          <label>Where <input id="city" type="text" placeholder="City, area or spot name" /></label>
+          <label>Date <input id="date" type="date" /></label>
+          <label>From <input id="time" type="time" value="10:00" /></label>
+          <label>Vehicle <select id="vehicle"><option value="all">Any vehicle</option><option value="CAR">Car</option><option value="BIKE">Bike</option><option value="SUV">SUV</option></select></label>
+          <label>Sort <select id="sort"><option value="price">Price: low to high</option><option value="price_desc">Price: high to low</option><option value="id">Newest listed</option></select></label>
+          <button class="primary-button" type="submit">Find parking <span>→</span></button>
+        </form>
+      </section>
+
+      <section class="dashboard" id="dashboard" hidden>
+        <div class="section-heading"><div><p class="eyebrow" id="dash-eyebrow">YOUR DASHBOARD</p><h2 id="dash-title">Your parking, at a glance.</h2></div><button id="dash-refresh" class="text-button" type="button">Refresh</button></div>
+        <div class="stats" id="dash-stats"></div>
+        <div class="tabs" id="dash-tabs" role="tablist"></div>
+        <div id="dash-panel" class="dash-panel"></div>
+      </section>
+
+      <section class="spaces-section" id="spaces">
+        <div class="section-heading"><div><p class="eyebrow">AVAILABLE NEAR YOU</p><h2>Easy parking starts here.</h2></div><button id="clear-filter" class="text-button" type="button" hidden>Show all spaces</button></div>
+        <p id="results-message" class="results-message">Showing available spaces</p>
+        <div id="parking-list" class="parking-grid"></div>
+      </section>
+
+      <section class="how-it-works" id="how-it-works">
+        <p class="eyebrow">HOW PARKEASE WORKS</p>
+        <div class="steps"><article><span>01</span><h3>Search nearby</h3><p>Tell us where and when you need a space.</p></article><article><span>02</span><h3>Choose your spot</h3><p>Compare trusted places, prices, and ratings.</p></article><article><span>03</span><h3>Park with ease</h3><p>Reserve, pay, and head straight to your space.</p></article></div>
+      </section>
+
+      <section class="owner-banner" id="list"><div><p class="eyebrow">FOR PARKING OWNERS</p><h2>Have an empty space?<br />Put it to work.</h2></div><button id="list-space-button" class="light-button" type="button">List your space <span>→</span></button></section>
+    </main>
+
+    <footer><a class="brand" href="#top"><span>P</span> ParkEase</a><p>Parking, made simple.</p><p>© 2026 ParkEase</p></footer>
+
+    <dialog id="booking-modal" class="wide"><button id="close-modal" class="close-button" aria-label="Close">×</button><div id="modal-content"></div></dialog>
+    <dialog id="auth-modal"><button id="close-auth-modal" class="close-button" aria-label="Close">×</button><div class="booking-content"><p class="eyebrow">YOUR PARKEASE ACCOUNT</p><h2>Welcome back.</h2><form id="auth-form" class="auth-form"><label id="name-field">Name<input id="auth-name" type="text" placeholder="Your name" /></label><label>Email<input id="auth-email" type="email" placeholder="you@example.com" required /></label><label>Password<input id="auth-password" type="password" minlength="8" placeholder="At least 8 characters" required /></label><label id="role-field">Account type<select id="auth-role"><option value="USER">Driver</option><option value="OWNER">Parking owner</option></select></label><p id="auth-error" class="form-error" aria-live="polite"></p><button class="primary-button modal-action" type="submit">Log in <span>→</span></button></form><button id="auth-toggle" class="text-button auth-toggle" type="button">New to ParkEase? Create an account</button></div></dialog>
+    <dialog id="listing-modal"><button id="close-listing-modal" class="close-button" aria-label="Close">×</button><div class="booking-content"><p class="eyebrow">OWNER DASHBOARD</p><h2 id="listing-title">List your parking space.</h2><form id="listing-form" class="auth-form"><label>Space name<input id="space-name" required placeholder="e.g. Indiranagar Secure Parking" /></label><label>Address<input id="space-address" required placeholder="Street address" /></label><div class="form-row"><label>City<input id="space-city" required placeholder="Bengaluru" /></label><label>Area<input id="space-area" required placeholder="Indiranagar" /></label></div><div class="form-row"><label>Price per hour (₹)<input id="space-price" type="number" min="1" step="1" required placeholder="60" /></label><label>Vehicle type<select id="space-vehicle"><option value="CAR">Car</option><option value="BIKE">Bike</option><option value="SUV">SUV</option></select></label></div><label>Image URL <input id="space-image" type="url" placeholder="Optional image URL" /></label><label class="check-label"><input id="space-available" type="checkbox" checked /> Open for bookings</label><p id="listing-error" class="form-error" aria-live="polite"></p><button id="listing-submit" class="primary-button modal-action" type="submit">Publish space <span>→</span></button></form></div></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.9/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
