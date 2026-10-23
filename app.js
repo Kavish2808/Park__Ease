@@ -74,7 +74,7 @@ function updateAccountUI() {
 function render(items) {
   list.innerHTML = items.length ? items.map(space => `
     <article class="parking-card">
-      <div class="card-image" style="--card-color:${space.imageUrl ? '#aecbd1' : '#cde566'}"><span class="spot-label">${esc(space.vehicleType)} friendly</span><div class="card-illustration"></div></div>
+      <div class="card-image" style="--card-color:${space.imageUrl ? '#aecbd1' : '#cde566'}">${space.imageUrl ? `<img class="card-photo" src="${esc(space.imageUrl)}" alt="${esc(space.name)}" loading="lazy" onerror="this.remove()">` : ''}<div class="card-illustration"></div><span class="spot-label">${esc(space.vehicleType)} friendly</span></div>
       <div class="card-content"><div class="card-top"><h3>${esc(space.name)}</h3><span class="rating">★ New</span></div><p class="address">${esc(space.area)}, ${esc(space.city)}<br><small>${esc(space.address)}</small></p><div class="card-bottom"><span class="price">${money(space.pricePerHour)} <small>/ hour</small></span><button class="book-button" data-id="${space.id}" type="button">Book a slot</button></div></div>
     </article>`).join('') : '<p class="empty">No spaces match those details yet. Try another city, area or vehicle type.</p>';
 }
